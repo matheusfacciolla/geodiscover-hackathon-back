@@ -3,12 +3,17 @@ import dotenv from "dotenv";
 import chalk from "chalk";
 import cors from "cors";
 
+import questionsRouter from "./routes/questionsRouter.js"
+import rankingRouter from "./routes/rankingRouter.js"
+
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(json());
+app.use(questionsRouter);
+app.use(rankingRouter);
 
 app.listen(process.env.PORT, () => {
-    console.log(chalk.bold.green(`${process.env.PORT}`))
+    console.log(chalk.bold.green(`server is running: ${process.env.PORT}`))
 });
