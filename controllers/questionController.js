@@ -24,8 +24,9 @@ async function questions(req, res) {
         }
 
         if (type === "game") {
-            let allQuestions = await db.collection("questions").find({}).toArray().sort(comparator).slice(0, 7);
-            res.status(200).send(allQuestions);
+            const allQuestions = await db.collection("questions").find({}).toArray();
+            let allQuestionsSorted = allQuestions.sort(comparator).slice(0, 7)
+            res.status(200).send(allQuestionsSorted);
         }
 
     } catch (error) {
