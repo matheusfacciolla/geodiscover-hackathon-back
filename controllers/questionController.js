@@ -8,7 +8,8 @@ async function questions(req, res) {
             const allQuestions = await db.collection("questions").find({}).toArray();
             const allQuestionsRandom = allQuestions.sort(comparator);
 
-            console.log("QUESTIONS ", allQuestionsRandom )
+            console.log("QUESTIONS ", allQuestions )
+            console.log("QUESTIONSrandom ", allQuestionsRandom )
 
             res.status(200).send({
                 image: allQuestionsRandom[0].url, id: allQuestionsRandom[0]._id,
