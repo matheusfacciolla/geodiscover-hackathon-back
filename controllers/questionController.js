@@ -2,7 +2,7 @@ import db from "../db.js";
 import { ObjectId } from "mongodb";
 
 async function questions(req, res) {
-    const { type, id } = req.params; 
+    const { type, id } = req.params;
 
     try {
         if (type === "random") {
@@ -11,22 +11,22 @@ async function questions(req, res) {
 
             const findId = await db.collection("questions").findOne({ _id: new ObjectId(id) });
 
-            if(findId._id != allQuestionsRandom[0]._id){
+            if (findId._id != allQuestionsRandom[0]._id) {
                 res.status(200).send({
                     image: allQuestionsRandom[0].image,
                     alternatives: [
-                        { name: allQuestionsRandom[0].name, isCorrect: true },
-                        { name: allQuestionsRandom[1].name, isCorrect: false },
-                        { name: allQuestionsRandom[2].name, isCorrect: false },
-                        { name: allQuestionsRandom[3].name, isCorrect: false }
+                        { name: allQuestionsRandom[0].name, type: allQuestionsRandom[0].type, isCorrect: true },
+                        { name: allQuestionsRandom[1].name, type: allQuestionsRandom[1].type, isCorrect: false },
+                        { name: allQuestionsRandom[2].name, type: allQuestionsRandom[2].type, isCorrect: false },
+                        { name: allQuestionsRandom[3].name, type: allQuestionsRandom[3].type, isCorrect: false }
                     ]
                 });
             }
         }
 
         if (type === "game") {
-            const allQuestions = await db.collection("questions").find({}).toArray();
-            res.status(200).send(allQuestions.sort(comparator).slice(0,7));
+            const allQuestions = await db.collection("questions").find({}).toArray().sort(comparator).slice(0, 7);
+            res.status(200).send(allQuestions);
         }
 
     } catch (error) {

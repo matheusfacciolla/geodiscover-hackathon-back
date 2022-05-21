@@ -15,5 +15,5 @@ app.use(questionsRouter);
 app.use(rankingRouter);
 
 app.listen(process.env.PORT, () => {
-    console.log(chalk.bold.green(`server is running: ${process.env.PORT}`))
+    console.log(chalk.bold.green(`server is running on port: ${process.env.PORT}`))
 });
