@@ -34,7 +34,7 @@ async function questions(req, res) {
 
                 return {
                     ...item, alternatives: [
-                        { name: allQuestionsSorted[0].name, type: allQuestionsSorted[0].type, isCorrect: true },
+                        { name: item.name, type: item.type, isCorrect: true },
                         { name: allWrongAnswers[0].name, type: allWrongAnswers[0].type, isCorrect: false },
                         { name: allWrongAnswers[1].name, type: allWrongAnswers[1].type, isCorrect: false },
                         { name: allWrongAnswers[2].name, type: allWrongAnswers[2].type, isCorrect: false }
