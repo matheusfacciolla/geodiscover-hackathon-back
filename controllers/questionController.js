@@ -1,5 +1,4 @@
 import db from "../db.js";
-import { ObjectId } from "mongodb";
 
 async function questions(req, res) {
     const { type } = req.query;
@@ -10,7 +9,7 @@ async function questions(req, res) {
             const allQuestionsRandom = allQuestions.sort(comparator);
 
             res.status(200).send({
-                image: allQuestionsRandom[0].image, id: allQuestionsRandom[0]._id,
+                image: allQuestionsRandom[0].url, id: allQuestionsRandom[0]._id,
                 alternatives: [
                     { name: allQuestionsRandom[0].name, type: allQuestionsRandom[0].type, isCorrect: true },
                     { name: allQuestionsRandom[1].name, type: allQuestionsRandom[1].type, isCorrect: false },
