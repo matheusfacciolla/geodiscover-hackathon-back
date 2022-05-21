@@ -11,7 +11,7 @@ async function questions(req, res) {
 
             const findId = await db.collection("questions").findOne({ _id: new ObjectId(id) });
 
-            if(findId != allQuestionsRandom[0].image){
+            if(findId._id != allQuestionsRandom[0]._id){
                 res.status(200).send({
                     image: allQuestionsRandom[0].image,
                     alternatives: [
@@ -26,7 +26,7 @@ async function questions(req, res) {
 
         if (type === "game") {
             const allQuestions = await db.collection("questions").find({}).toArray();
-            res.status(200).send(allQuestions.slice(0,7));
+            res.status(200).send(allQuestions.sort(comparator).slice(0,7));
         }
 
     } catch (error) {
