@@ -25,8 +25,23 @@ async function questions(req, res) {
 
         if (type === "game") {
             const allQuestions = await db.collection("questions").find({}).toArray();
+
+
+
             let allQuestionsSorted = allQuestions.sort(comparator).slice(0, 7)
-            res.status(200).send(allQuestionsSorted);
+            let arrAllQuestionsSorted = allQuestionsSorted.map(item => {
+            let allWrongAnswers = allQuestions.sort(comparator).slice(0, 3);
+                return {
+                    ...item, alternatives: [
+                        { name: allQuestionsRandom[0].name, type: allQuestionsRandom[0].type, isCorrect: true },
+                        { name: allWrongAnswers[0].name, type: allWrongAnswers[0].type, isCorrect: false },
+                        { name: allWrongAnswers[1].name, type: allWrongAnswers[1].type, isCorrect: false },
+                        { name: allWrongAnswers[2].name, type: allWrongAnswers[2].type, isCorrect: false }
+                    ]
+                }
+            })
+
+            res.status(200).send(arrAllQuestionsSorted);
         }
 
     } catch (error) {
