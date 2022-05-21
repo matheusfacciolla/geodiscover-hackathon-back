@@ -6,7 +6,7 @@ async function questions(req, res) {
     try {
         if (type === "random") {
             const allQuestions = await db.collection("questions").find({}).toArray();
-            const allQuestionsRandom = allQuestions.sort(comparator);
+            let allQuestionsRandom = allQuestions.sort(comparator);
 
             allQuestionsRandom = allQuestionsRandom.filter(question => question.type === allQuestionsRandom[0].type);
 
