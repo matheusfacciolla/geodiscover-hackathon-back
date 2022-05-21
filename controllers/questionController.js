@@ -5,6 +5,11 @@ async function questions(req, res) {
 
     try {
         if (type === "random") {
+
+            const allTest = await db.collection("test").find({}).toArray();
+
+            console.log("alltest", allTest);
+
             const allQuestions = await db.collection("questions").find({}).toArray();
             const allQuestionsRandom = allQuestions.sort(comparator);
 
