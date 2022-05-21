@@ -40,4 +40,4 @@ function comparator() {
     return Math.random() - 0.5;
 }
 
-export { questions };
+export default questions;
