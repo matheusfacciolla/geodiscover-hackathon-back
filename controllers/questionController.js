@@ -30,10 +30,11 @@ async function questions(req, res) {
 
             let allQuestionsSorted = allQuestions.sort(comparator).slice(0, 7)
             let arrAllQuestionsSorted = allQuestionsSorted.map(item => {
-            let allWrongAnswers = allQuestions.sort(comparator).slice(0, 3);
+                let allWrongAnswers = allQuestions.filter(item2 => item2.type === item.type).sort(comparator).slice(0, 3);
+
                 return {
                     ...item, alternatives: [
-                        { name: allQuestionsRandom[0].name, type: allQuestionsRandom[0].type, isCorrect: true },
+                        { name: allQuestionsSorted[0].name, type: allQuestionsSorted[0].type, isCorrect: true },
                         { name: allWrongAnswers[0].name, type: allWrongAnswers[0].type, isCorrect: false },
                         { name: allWrongAnswers[1].name, type: allWrongAnswers[1].type, isCorrect: false },
                         { name: allWrongAnswers[2].name, type: allWrongAnswers[2].type, isCorrect: false }
