@@ -11,7 +11,7 @@ async function ranking(req, res) {
                 return -1;
             }
             return 0;
-        }).reverse().slice(0, Math.min(0, lista.length))
+        }).slice(0, Math.min(7, lista.length)).reverse();
         
         res.status(200).send(sortResults);
 

@@ -2,7 +2,7 @@ import db from "../db.js";
 import { ObjectId } from "mongodb";
 
 async function questions(req, res) {
-    const { type, id } = req.params;
+    const { type, id } = req.query;
 
     try {
         if (type === "random") {
@@ -13,7 +13,7 @@ async function questions(req, res) {
 
             if (findId._id != allQuestionsRandom[0]._id) {
                 res.status(200).send({
-                    image: allQuestionsRandom[0].image,
+                    image: allQuestionsRandom[0].image, id: allQuestionsRandom[0]._id,
                     alternatives: [
                         { name: allQuestionsRandom[0].name, type: allQuestionsRandom[0].type, isCorrect: true },
                         { name: allQuestionsRandom[1].name, type: allQuestionsRandom[1].type, isCorrect: false },
